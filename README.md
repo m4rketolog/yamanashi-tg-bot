@@ -1,1 +1,1 @@
-# yananashi-tg-bot
+# Bot for content creators.
