@@ -1,6 +1,11 @@
 const { Telegraf } = require('telegraf')
 const { message } = require('telegraf/filters')
-const { handleAddAccount, handleListAccounts } = require('./src/commands/commands');
+const { 
+  handleAddAccount, 
+  handleListAccounts,
+  handleManyAccounts,
+  handleCountAccounts,
+} = require('./src/commands/commands');
 require('dotenv').config();
 
 const bot = new Telegraf(`${process.env.BOT_TOKEN}`)
@@ -41,6 +46,8 @@ bot.launch()
 
 bot.command('addaccount', handleAddAccount);
 bot.command('listaccounts', handleListAccounts);
+bot.command('more', handleManyAccounts);
+bot.command("count", handleCountAccounts)
 
 process.once('SIGINT', () => bot.stop('SIGINT'))
 process.once('SIGTERM', () => bot.stop('SIGTERM'))
