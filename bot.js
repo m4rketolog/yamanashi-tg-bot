@@ -45,7 +45,7 @@ bot.launch()
 );
 
 bot.command('addaccount', handleAddAccount);
-bot.command('listaccounts', handleListAccounts);
+bot.command('list', handleListAccounts);
 bot.command('more', handleManyAccounts);
 bot.command("count", handleCountAccounts)
 

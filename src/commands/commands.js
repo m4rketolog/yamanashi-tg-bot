@@ -5,18 +5,36 @@ const requiredChannel = process.env.CHANNEL_USERNAME
 
 function filterInputData(data) {
   const lines = data.trim().split('\n').filter(line => line.trim() !== '');
-
-  const res = lines.map(line => {
-    const [prefix, login, password, email, emailPassword] = line.split(':');
-
-    return {
-        login,
-        password,
-        email,
-        emailPassword
-    };
-  });
-  return res;
+  console.log(lines);
+  if (lines[2][0] === "@") {
+    const res = lines.map(line => {
+          const [login, password, email, emailPassword] = line.split(':');
+          console.log("Login: " + login);
+          const region = null;
+          return {
+              region,
+              login,
+              password,
+              email,
+              emailPassword, 
+          };
+        });
+        console.log(res);
+        return res;
+  } else {
+    const res = lines.map(line => {
+      const [region, login, password, email, emailPassword] = line.split(':');
+  
+      return {
+          region,
+          login,
+          password,
+          email,
+          emailPassword
+      };
+    });
+    return res;
+  }
 }
 
 async function isAdmin(ctx) {
@@ -36,7 +54,7 @@ async function handleAddAccount(ctx) {
 
   const messageText = ctx.message.text;
   const accountDetails = filterInputData(messageText);
-  if (!accountDetails[0].login) {
+  if (!accountDetails[0].login && !!accountDetails[0].email) {
     return ctx.reply('Отошлите данные от аккаунта в формате: addaccount мой_пароль/мой_логин');
   }
 

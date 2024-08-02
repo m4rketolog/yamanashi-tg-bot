@@ -28,7 +28,7 @@ async function saveData(data) {
   await fs.writeFile(file, JSON.stringify(data, null, 2), 'utf-8');
 }
 
-async function addAccount({login, password, email, emailPassword}, ctx) {
+async function addAccount({region, login, password, email, emailPassword}, ctx) {
   
   if (await findAccountByLogin(login)) {
     return ctx.reply("Аккаунт уже создан");
@@ -38,6 +38,7 @@ async function addAccount({login, password, email, emailPassword}, ctx) {
   
   data.accounts.push({
      id: Date.now(), 
+     region: region,
      login: login, 
      password: password, 
      email: email, 
@@ -57,6 +58,7 @@ async function addMoreAccounts(accounts, ctx) {
     
     data.accounts.push({
        id: Date.now(), 
+       region: account.region,
        login: account.login, 
        password: account.password, 
        email: account.email, 
