@@ -72,8 +72,15 @@ async function addMoreAccounts(accounts, ctx) {
 
 async function getAllAccounts() {
   const data = await loadData();
-  return data.accounts.map((account) => `${account.login}:${account.password}:${account.email}:${account.emailPassword} \n`);
+  return data.accounts.map((account) => {
+    if (account.region) {
+      return `${account.region}${account.login}:${account.password}:${account.email}:${account.emailPassword} \n`
+    } else if (account.region === null){
+      return `${account.login}:${account.password}:${account.email}:${account.emailPassword} \n`
+    }
+  });
 }
+
 async function countAllAcounts() {
   const data = await loadData();
   return data.accounts.length;

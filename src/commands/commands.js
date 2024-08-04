@@ -6,11 +6,11 @@ const requiredChannel = process.env.CHANNEL_USERNAME
 function filterInputData(data) {
   const lines = data.trim().split('\n').filter(line => line.trim() !== '');
   console.log(lines);
-  if (lines[2][0] === "@") {
-    const res = lines.map(line => {
-          const [login, password, email, emailPassword] = line.split(':');
-          console.log("Login: " + login);
-          const region = null;
+  const res = lines.map((line)=> {
+    if (line[0] === "@") {
+      const [login, password, email, emailPassword] = line.split(':');
+
+      const region = null;
           return {
               region,
               login,
@@ -18,11 +18,7 @@ function filterInputData(data) {
               email,
               emailPassword, 
           };
-        });
-        console.log(res);
-        return res;
-  } else {
-    const res = lines.map(line => {
+    }else {
       const [region, login, password, email, emailPassword] = line.split(':');
   
       return {
@@ -32,9 +28,9 @@ function filterInputData(data) {
           email,
           emailPassword
       };
-    });
-    return res;
-  }
+    }
+  })
+  return res;
 }
 
 async function isAdmin(ctx) {
