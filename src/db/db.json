@@ -1,23 +1,23 @@
 {
   "accounts": [
     {
-      "id": 1722673194283,
-      "region": "KZ",
-      "login": "@yzaurelie",
-      "password": "#t86081AdezY_",
-      "email": "unwinyankep@outlook.com",
-      "emailPassword": "uCN39P0n2HrZlo"
+      "id": 1722785511830,
+      "region": null,
+      "login": "@ayakagux5iki",
+      "password": "#Ri2563kono_",
+      "email": "mhbobaarieh@outlook.com",
+      "emailPassword": "efCAqhLA9CF1g"
     },
     {
-      "id": 1722673194283,
+      "id": 1722785511830,
       "region": "KZ",
-      "login": "@taanq_ga5192c",
-      "password": "1994MYBofamYZy#",
-      "email": "izamadonii@outlook.com",
-      "emailPassword": "WYAgeTgkQTFX"
+      "login": "@guterman549vi44sobi",
+      "password": "CIBiBoGu47872%",
+      "email": "kobeponnye1@outlook.com",
+      "emailPassword": "qGdfz8BAw4Rk4P"
     },
     {
-      "id": 1722673194283,
+      "id": 1722785511830,
       "region": null,
       "login": "@cowboy362zeenden2",
       "password": "Ro182fIKinA#",
@@ -25,13 +25,162 @@
       "emailPassword": "ogdPURj7STOHI"
     },
     {
-      "id": 1722673194283,
+      "id": 1722785511831,
+      "region": null,
+      "login": "@pakarinen_petrescu",
+      "password": "#QY922CAJU!",
+      "email": "uyiolazoer@outlook.com",
+      "emailPassword": "eFtNlPcy8ZOEjZQ +"
+    },
+    {
+      "id": 1722785511831,
       "region": null,
       "login": "@gudmundswaticow",
       "password": "X9461ezeji%",
       "email": "ekondesounil@outlook.com",
       "emailPassword": "X1VlcSYWdIxz"
+    },
+    {
+      "id": 1722785511831,
+      "region": null,
+      "login": "@h_xy332lig",
+      "password": "huG553idEj%",
+      "email": "mhaiimarila@outlook.com",
+      "emailPassword": "vBi8tOfItrj0"
+    },
+    {
+      "id": 1722785511831,
+      "region": null,
+      "login": "@grandroyl8965",
+      "password": "TU8575hAPYWEF_",
+      "email": "mohadetaje@outlook.com",
+      "emailPassword": "qS8vig3c97yk"
+    },
+    {
+      "id": 1722785511831,
+      "region": null,
+      "login": "@hqeyjbeckenbauer",
+      "password": "%pyCyqeli572#",
+      "email": "rusalgwarzo@outlook.com",
+      "emailPassword": "X8c5w0zhlJS42Y1"
+    },
+    {
+      "id": 1722785511831,
+      "region": null,
+      "login": "@stefanring72duck",
+      "password": "xEWeP900IQ#",
+      "email": "mioraxhusti@outlook.com",
+      "emailPassword": "GtZOVK8EA8yICUF"
+    },
+    {
+      "id": 1722859843152,
+      "region": "/addaccount"
     }
   ],
-  "completedAccounts": []
+  "completedAccounts": [
+    {
+      "id": 1722859738622,
+      "login": "@user25621155815436",
+      "status": "uncompleted",
+      "worker": "880671134"
+    },
+    {
+      "id": 1722859738622,
+      "login": "@tuuli5242",
+      "status": "uncompleted",
+      "worker": "880671134"
+    },
+    {
+      "id": 1722859738622,
+      "login": "@otsukate2719",
+      "status": "uncompleted",
+      "worker": "880671134"
+    },
+    {
+      "id": 1722859822169,
+      "login": "@bras3124",
+      "status": "uncompleted",
+      "worker": "246483989"
+    },
+    {
+      "id": 1722859822169,
+      "login": "@wilddog0_2736",
+      "status": "uncompleted",
+      "worker": "246483989"
+    },
+    {
+      "id": 1722859822169,
+      "login": "@paul_7264",
+      "status": "uncompleted",
+      "worker": "246483989"
+    },
+    {
+      "id": 1722859843152,
+      "status": "uncompleted"
+    }
+  ],
+  "workers": [
+    {
+      "userId": "880671134",
+      "getAccountsTimeout": "2024-08-05",
+      "postAccountsTimeout": null,
+      "takenAccounts": [
+        {
+          "id": 1722785511830,
+          "region": "KZ",
+          "login": "@user25621155815436",
+          "password": "n8456iGuXaSy#",
+          "email": "juhaszmeia@outlook.com",
+          "emailPassword": "MY95jJ5WYRArd"
+        },
+        {
+          "id": 1722785511830,
+          "region": "KZ",
+          "login": "@tuuli5242",
+          "password": "PEMEjoB1128IXaf$",
+          "email": "bolleyvsyo@outlook.com",
+          "emailPassword": "kODIJhWzBXW0C2"
+        },
+        {
+          "id": 1722785511830,
+          "region": "KZ",
+          "login": "@otsukate2719",
+          "password": "Jenesac382@",
+          "email": "pacielloedts@outlook.com",
+          "emailPassword": "m5WgapY8SSvhXE"
+        }
+      ]
+    },
+    {
+      "userId": "246483989",
+      "getAccountsTimeout": "2024-08-05",
+      "postAccountsTimeout": null,
+      "takenAccounts": [
+        {
+          "id": 1722785511830,
+          "region": "KZ",
+          "login": "@wilddog0_2736",
+          "password": "@655PImezuBYs%",
+          "email": "boasyemsal@outlook.com",
+          "emailPassword": "1UuSCEvGsTlKsd"
+        },
+        {
+          "id": 1722785511830,
+          "region": "KZ",
+          "login": "@bras3124",
+          "password": "Sojocizuh1927a%",
+          "email": "gaklontodzi@outlook.com",
+          "emailPassword": "t2KoNUypYmetD"
+        },
+        {
+          "id": 1722785511830,
+          "region": "KZ",
+          "login": "@paul_7264",
+          "password": "$QoHEBE99120VoWE_",
+          "email": "osemelenlee@outlook.com",
+          "emailPassword": "quMX8Zw7Q3Hddz"
+        }
+      ]
+    }
+  ]
 }

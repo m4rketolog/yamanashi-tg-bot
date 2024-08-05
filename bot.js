@@ -1,10 +1,12 @@
 const { Telegraf } = require('telegraf')
 const { message } = require('telegraf/filters')
 const { 
+  handleCreateWorker,
   handleAddAccount, 
   handleListAccounts,
   handleManyAccounts,
   handleCountAccounts,
+  handleGetAccountsWork,
 } = require('./src/commands/commands');
 require('dotenv').config();
 
@@ -47,7 +49,9 @@ bot.launch()
 bot.command('addaccount', handleAddAccount);
 bot.command('list', handleListAccounts);
 bot.command('more', handleManyAccounts);
-bot.command("count", handleCountAccounts)
+bot.command("count", handleCountAccounts);
+bot.command("work", handleGetAccountsWork);
+bot.command("job", handleCreateWorker);
 
 process.once('SIGINT', () => bot.stop('SIGINT'))
 process.once('SIGTERM', () => bot.stop('SIGTERM'))
