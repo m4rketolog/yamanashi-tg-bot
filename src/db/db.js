@@ -1,7 +1,7 @@
 const fs = require('fs').promises;
 const { error } = require('console');
 const path = require('path');
-const { threadId } = require('worker_threads');
+require('dotenv').config();
 
 const file = path.join(__dirname, 'db.json');
 
@@ -130,9 +130,10 @@ async function getAccountsWork(userId, ctx) {
     return {error: "Вы уже использовали эту команду сегодня. (Лимит на использование - раз в сутки)"};
   }
 
-  const selectedAccounts = await data.accounts.splice(0, 3);
+  const accountsPerDay = process.env.ACCOUNTS_PER_DAY
+  const selectedAccounts = await data.accounts.splice(0, accountsPerDay);
   
-  if (selectedAccounts.length < 3) {
+  if (selectedAccounts.length < accountsPerDay) {
     return {error: "Нет достаточного кол-ва аккаунтов"};
   }
 
@@ -171,16 +172,115 @@ async function getAllAccounts() {
   });
 }
 
+async function postDailyAccounts(accounts, userId) {
+  const data = await loadData();
+  
+  const user = data.workers.find(worker => worker.userId === userId);
+  
+  if (user.postAccountsTimeout != null) {
+    return {error: `Вы исчерпали лимит использования команды на день (${process.env.ACCOUNTS_PER_DAY} аккаунтов в сутки)`}
+  }
+  
+  accounts.map((item) => {
+    
+    const acc = data.completedAccounts.find(account => account.login === item)
+
+    if (!acc) {
+      return {error: "Неправильный логин."}
+    }
+    if (acc.worker != userId) {
+      return {error: "Вы не можете использовать чужой аккаунт!!"}
+    }
+    
+    acc.status = "completed";
+
+    const userAccounts = data.completedAccounts.filter(account => account.worker == userId);
+    const leftAccounts = userAccounts.filter(account => account.status === "uncompleted");
+
+    if (leftAccounts.length < 1) {
+      let today = Date.now();
+      user.postAccountsTimeout = today.toString().split('T')[0];
+    }
+  })
+  
+  await saveData(data);
+
+  return {message: "Аккаунты были добавлены"};
+}
+
 async function countAllAcounts() {
   const data = await loadData();
   return data.accounts.length;
 }
 
+async function resetUsersTimeouts() {
+  try {
+    const data = await loadData();
+
+    await Promise.all(data.workers.map( async (worker) => {
+      if (worker.getAccountsTimeout != null && worker.postAccountsTimeout != null) {
+        worker.getAccountsTimeout = null;
+        worker.postAccountsTimeout = null;
+        worker.takenAccounts = [];
+      
+      } else if (worker.getAccountsTimeout != null) {
+        
+        worker.getAccountsTimeout = null;
+        worker.takenAccounts = [];
+      }
+    }))
+  
+    await saveData(data);
+  
+    console.log('Timeouts reset for all users');
+  } catch (error) {
+    console.error('An error occurred wih user:', error);
+  }
+  
+}
+
+async function refreshCompletedAccounts() {
+  const data = await loadData();
+  try {
+    
+    await Promise.all(data.completedAccounts.map( async (account) => {
+      if (account.status != "completed") {
+        const worker = data.workers.find(user => user.userId == account.worker);
+        
+        const uncompletedAccount = worker.takenAccounts.find(acc => acc.login === account.login);
+
+        data.accounts.push({
+          id: Date.now(), 
+          region: uncompletedAccount.region || null,
+          login: uncompletedAccount.login, 
+          password: uncompletedAccount.password, 
+          email: uncompletedAccount.email, 
+          emailPassword: uncompletedAccount.emailPassword
+        });
+        
+        data.completedAccounts = data.completedAccounts.filter(acc => acc.login != account.login);
+      } else {
+        data.completedAccounts = data.completedAccounts.filter(acc => acc.login != account.login)
+      }
+  }))
+  
+  await saveData(data);
+
+  console.log('Completed Accs been refreshed');
+  } catch (error) {
+    console.error('An error occurred with CompletedAccounts:', error);
+  }
+  
+}
+
 module.exports = {
+  postDailyAccounts,
   createWorker,
   addAccount,
   getAllAccounts,
   addMoreAccounts,
   countAllAcounts,
   getAccountsWork,
+  resetUsersTimeouts,
+  refreshCompletedAccounts,
 };

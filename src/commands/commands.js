@@ -5,6 +5,7 @@ const {
   countAllAcounts,
   createWorker, 
   getAccountsWork, 
+  postDailyAccounts,
 } = require('../db/db');
 require('dotenv').config();
 
@@ -37,6 +38,11 @@ function filterInputData(data) {
     }
   })
   return res;
+}
+function filterPostAccounts(data) {
+  const lines = data.trim().split('\n').filter(line => line.trim() !== '');
+  console.log(lines);
+  return lines;
 }
 
 async function isAdmin(ctx) {
@@ -117,6 +123,17 @@ async function handleCreateWorker(ctx) {
   await createWorker(userId);
 }
 
+async function handleDailyAccountsPost(ctx) {
+  const userId = ctx.from.id.toString();
+  const messageText = filterPostAccounts(ctx.message.text);
+  
+  const res = await postDailyAccounts(messageText, userId);
+  if (res.error) {
+    return ctx.reply(res.error);
+  }
+  return ctx.reply(res.message);
+}
+
 module.exports = {
   handleAddAccount,
   handleListAccounts,
@@ -124,4 +141,5 @@ module.exports = {
   handleCountAccounts,
   handleCreateWorker,
   handleGetAccountsWork,
+  handleDailyAccountsPost,
 };
